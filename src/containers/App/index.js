@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
-import Button from '@material-ui/core/Button';
 import styles from './styles';
-import { withStyles } from '@material-ui/styles';
+import { withStyles, ThemeProvider } from '@material-ui/styles';
+import Taskboard from '../Taskboard';
+import theme from './../../commons/Theme';
 
 class App extends Component {
-    render() {
-        const {classes} = this.props;
+    render() {       
         return (
-            <div className="App">
-             <Button variant="contained" color="secondary">Default</Button>
-             <div className={classes.box}>
-                 <div>A</div>
-                 <div>B</div>
-                 <div>C</div>
-             </div>
-            </div>
+            <ThemeProvider theme={theme}>
+                <Taskboard></Taskboard>
+            </ThemeProvider>
           );
     }
 }
