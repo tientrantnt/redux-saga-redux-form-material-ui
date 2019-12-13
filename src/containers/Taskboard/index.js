@@ -56,6 +56,7 @@ class Taskboard extends Component {
         xhtml = <TaskForm open = {open} onCloseForm = {this.handleClose}/>;
         return xhtml;
     }
+    
     render() {
         const { classes } = this.props;
         return (

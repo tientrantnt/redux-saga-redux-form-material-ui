@@ -14,10 +14,10 @@ export const fetchListTaskSuccess = (data) =>{
         }
     }
 }
-export const fetchListTaskFailed = (error) =>{
+export const fetchListTaskFailed = (error) =>{    
     return {
         type:taskContants.FETCH_TASK_FAILED,
-        paload : {
+        payload : {
             error
         }
     }
@@ -34,7 +34,7 @@ export const fetchListTaskRequest = () => {
         taskAPIs.getList().then(resp => {
             const {data} = resp;
             dispatch(fetchListTaskSuccess(data));
-        }).catch(error => {
+        }).catch(error => {            
             dispatch(fetchListTaskFailed(error));
         })
     }
