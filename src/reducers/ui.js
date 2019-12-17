@@ -7,13 +7,13 @@ const reducer = (state = InitialState, action) => {
   switch (action.type) {
     case uiTypes.SHOW_LOADING:
       return {
+        ...state,
         showLoading: true,
-        ...state
       }
     case uiTypes.HIDE_LOADING:
       return {
+        ...state,
         showLoading: false,
-        ...state
       }
     default:
       return state
