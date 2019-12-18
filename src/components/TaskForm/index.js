@@ -1,43 +1,53 @@
 import React, { Component } from 'react'
 import styles from './styles';
 import { withStyles } from '@material-ui/styles';
-import { Button, Dialog, DialogActions, DialogContent,DialogTitle,TextField } from '@material-ui/core';
+import { Button, TextField, Modal, Grid, Box} from '@material-ui/core';
 class TaskForm extends Component {
-    
-    render() {
-        const {open,onCloseForm} = this.props;
-        return (
-            <Dialog
-                open={open}
-                onClose={onCloseForm}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">Thêm công việc</DialogTitle>
-                <DialogContent>
+
+  render() {
+    const { classes, open, onCloseForm } = this.props;
+    return (
+      <Modal open={open} onClose={onCloseForm}>
+        <form>
+          <div className={classes.paper}>
+            <Grid container >
+              <Grid item xs={12}>
                 <TextField
-                    id="standard-helperText"
-                    label="Helper text"                   
-                    
+                  id="standard-helperText"
+                  label="Helper text"
+                  className={classes.textField}
                 />
-                
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
-                    id="standard-multiline-flexible"
-                    label="Multiline"
-                    multiline
-                    rowsMax="4"               
+                  id="standard-multiline-flexible"
+                  label="Multiline"
+                  multiline
+                  rowsMax="4"
+                  className={classes.textField}
                 />
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={onCloseForm} color="primary">
-                    Disagree
-                </Button>
-                <Button onClick={onCloseForm} color="primary" autoFocus>
-                    Agree
-                </Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
+              </Grid>
+              <Grid item xs={12} >
+                <Box display="flex" flexDirection="row-reverse" mt={1}>
+                  <Box>
+                  <Button variant="contained" onClick={onCloseForm} color="primary" ml={2}>
+                    Lưu Lại
+                  </Button>
+                  </Box>
+                  <Box>
+                  <Button variant="contained" onClick={onCloseForm} color="primary" autoFocus>
+                    Hủy Bỏ
+                  </Button>
+                  </Box>
+                  
+                </Box>
+              </Grid>
+            </Grid>
+          </div>
+        </form>
+      </Modal>
+
+    )
+  }
 }
 export default withStyles(styles)(TaskForm);

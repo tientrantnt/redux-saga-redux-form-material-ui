@@ -104,5 +104,4 @@ const mapDispatchToProps = dispatch => {
     taskActionCreators: bindActionCreators(taskActions, dispatch)
   }
 }
-com
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Taskboard));
