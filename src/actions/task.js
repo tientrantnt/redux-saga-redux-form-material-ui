@@ -14,6 +14,18 @@ export const fetchListTaskFailed = (error) => {
       error
     }}
 }
+
+export const filterTask = keyword => {
+  return {type: taskContants.FILTER_TASK, payload: {
+      keyword
+    }}
+}
+
+export const filteTaskSuccess = data => {
+  return {type: taskContants.FILTER_TASK_SUCCESS, payload: {
+      data
+    }}
+}
 /**
  * B1 : fetchListTaskRequest()
  * B2 : resest state task = > []
@@ -21,7 +33,7 @@ export const fetchListTaskFailed = (error) => {
  */
 
 // export const fetchListTaskRequest = () => {     return dispatch => {
-// dispatch(fetchListTask());         taskAPIs.getList().then(resp => {
-//    const {data} = resp;             dispatch(fetchListTaskSuccess(data));
-//     }).catch(error => {             dispatch(fetchListTaskFailed(error));
-//     })     } }
+// dispatch(fetchListTask());         taskAPIs.getList().then(resp => {    const
+// {data} = resp;             dispatch(fetchListTaskSuccess(data));
+// }).catch(error => {             dispatch(fetchListTaskFailed(error));     })
+//   } }

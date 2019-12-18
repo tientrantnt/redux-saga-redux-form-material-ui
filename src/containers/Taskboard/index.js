@@ -18,10 +18,11 @@ class Taskboard extends Component {
     }
   }
   componentDidMount() {
-    // const {taskActionCreators} = this.props; const {fetchListTaskRequest} =
-    // taskActionCreators; const {fetchListTask} = taskActionCreators;
-    // fetchListTask();
+    const {taskActionCreators} = this.props; const {fetchListTaskRequest} =
+    taskActionCreators; const {fetchListTask} = taskActionCreators;
+    fetchListTask();
   }
+  
   handleFetch = () => {
     const {taskActionCreators} = this.props;
     // const {fetchListTaskRequest} = taskActionCreators;
@@ -56,6 +57,10 @@ class Taskboard extends Component {
   }
   handleFilter = e =>{
     console.log('e:' , e);
+    const { value } = e.target;
+    const {taskActionCreators} = this.props;
+    const {filterTask} = taskActionCreators;
+    filterTask(value);
   }
   renderSearchBox(){
     let xhtml = null;
@@ -99,4 +104,5 @@ const mapDispatchToProps = dispatch => {
     taskActionCreators: bindActionCreators(taskActions, dispatch)
   }
 }
+com
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Taskboard));
