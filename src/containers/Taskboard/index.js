@@ -8,6 +8,7 @@ import TaskForm from '../../components/TaskForm';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as taskActions from './../../actions/task';
+import SearchBox from './../../components/SearchBox/index';
 
 class Taskboard extends Component {
   constructor(props) {
@@ -53,6 +54,14 @@ class Taskboard extends Component {
     xhtml = <TaskForm open={open} onCloseForm={this.handleClose}/>;
     return xhtml;
   }
+  handleFilter = e =>{
+    console.log('e:' , e);
+  }
+  renderSearchBox(){
+    let xhtml = null;
+    xhtml = <SearchBox handleChange={this.handleFilter}/>
+    return xhtml;
+  }
  
   render() {
     const {classes} = this.props;
@@ -75,6 +84,7 @@ class Taskboard extends Component {
           onClick={this.handleFetch}>
           Fetch dữ liệu
         </Button>
+        {this.renderSearchBox()}
         {this.renderBoard()}
         {this.renderForm()}
       </div>

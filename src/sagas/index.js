@@ -3,9 +3,9 @@ import * as taskTypes from './../constants/task';
 import {fetchListTaskSuccess, fetchListTaskFailed} from './../actions/task';
 import {getList} from './../apis/task';
 import {STATUS_CODE} from './../constants/index';
-import {showLoading,hideLoading} from './../actions/ui';
+import {showLoading, hideLoading} from './../actions/ui';
 function * watchFetchListTaskAction() {
-  while (true){
+  while (true) {
     yield take(taskTypes.FETCH_TASK);
     yield put(showLoading());
     const resp = yield call(getList);

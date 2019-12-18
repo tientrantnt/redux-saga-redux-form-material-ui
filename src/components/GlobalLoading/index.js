@@ -7,12 +7,13 @@ import {connect} from 'react-redux';
 
 class GlobalLoading extends Component {
   render() {
-    const { classes, showLoading } = this.props;
+
+    const {classes, showLoading} = this.props;
     let xhtml = null;
     if (showLoading) {
       xhtml = (
         <div className={classes.globalloading}>
-          <img src={LoadingIcon} alt="loading" className={classes.icon} />
+          <img src={LoadingIcon} alt="loading" className={classes.icon}/>
         </div>
       );
     }
@@ -21,15 +22,8 @@ class GlobalLoading extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    showLoading: state.ui.showLoading
-  }
+  return {showLoading: state.ui.showLoading}
 }
+const withConnect = connect(mapStateToProps, null);
 
-const withConnect =  connect (mapStateToProps,null);
-
-export default compose(
-  withStyles(styles),
-  withConnect
-)
-(GlobalLoading); 
+export default compose(withStyles(styles), withConnect)(GlobalLoading);
