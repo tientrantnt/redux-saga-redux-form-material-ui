@@ -8,6 +8,7 @@ import TaskForm from '../../components/TaskForm';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as taskActions from './../../actions/task';
+import * as modalActions from './../../actions/modal';
 import SearchBox from './../../components/SearchBox/index';
 
 class Taskboard extends Component {
@@ -44,7 +45,10 @@ class Taskboard extends Component {
     return xhtml;
   }
   handleOpenForm = () => {
-    this.setState({open: true})
+    const {modalActionCreators} = this.props;
+    const {showModal,changeModalContent,changeModalTitle} = modalActionCreators;
+    showModal();
+    changeModalTitle('changeModalTitle');
   }
   handleClose = () => {
     this.setState({open: false})
@@ -101,7 +105,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    taskActionCreators: bindActionCreators(taskActions, dispatch)
+    taskActionCreators: bindActionCreators(taskActions, dispatch),
+    modalActionCreators: bindActionCreators(modalActions, dispatch)
   }
 }
+
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Taskboard));
