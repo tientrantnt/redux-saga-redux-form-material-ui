@@ -8,6 +8,8 @@ import Taskboard from '../Taskboard';
 import GlobalLoading from './../../components/GlobalLoading';
 import theme from './../../commons/Theme';
 import styles from './styles';
+import ModalCommon from './../../components/ModalCommon';
+
 const store = configureStore();
 
 class App extends Component {
@@ -18,6 +20,7 @@ class App extends Component {
           <ToastContainer />
           <GlobalLoading />
           <Taskboard />
+          <ModalCommon />
         </ThemeProvider>
       </Provider>
     );

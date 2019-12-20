@@ -4,7 +4,7 @@ import {withStyles} from '@material-ui/styles';
 import {STATUSES} from './../../constants/index';
 import {Button, Grid, Icon} from '@material-ui/core';
 import TaskList from './../../components/TaskList/index';
-import TaskForm from '../../components/TaskForm';
+import TaskForm from '../TaskForm';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as taskActions from './../../actions/task';
@@ -19,14 +19,13 @@ class Taskboard extends Component {
     }
   }
   componentDidMount() {
-    const {taskActionCreators} = this.props; const {fetchListTaskRequest} =
-    taskActionCreators; const {fetchListTask} = taskActionCreators;
+    const {taskActionCreators} = this.props; 
+    const {fetchListTask} = taskActionCreators;
     fetchListTask();
   }
   
   handleFetch = () => {
     const {taskActionCreators} = this.props;
-    // const {fetchListTaskRequest} = taskActionCreators;
     const {fetchListTask} = taskActionCreators;
     fetchListTask();
   }
@@ -44,11 +43,13 @@ class Taskboard extends Component {
     );
     return xhtml;
   }
+  
   handleOpenForm = () => {
     const {modalActionCreators} = this.props;
     const {showModal,changeModalContent,changeModalTitle} = modalActionCreators;
     showModal();
-    changeModalTitle('changeModalTitle');
+    changeModalTitle('Thêm mới công việc');
+    changeModalContent(<TaskForm />);
   }
   handleClose = () => {
     this.setState({open: false})
@@ -95,7 +96,6 @@ class Taskboard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {this.renderForm()}
       </div>
     )
   }

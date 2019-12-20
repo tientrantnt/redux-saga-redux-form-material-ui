@@ -10,9 +10,6 @@ const styles = theme => ({
         // padding: theme.spacing(2, 4, 3),
         
     },
-    textField:{
-        width: '100%'
-    },
     header : {
         backgroundColor : theme.color.primary,
         color : theme.color.textColor,
@@ -34,5 +31,4 @@ const styles = theme => ({
         padding: theme.spacing(2),
     }
 });
-
 export default styles;

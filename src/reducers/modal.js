@@ -5,6 +5,7 @@ const InitialState = {
   title : '',
   component : null
 }
+
 const reducer = (state = InitialState, action) => {
   switch (action.type) {
     case modalTypes.SHOW_MODAL:
@@ -18,7 +19,9 @@ const reducer = (state = InitialState, action) => {
       {
         return {
           ...state,
-          showModal: false
+          showModal: false,
+          title : '',
+          component : null
         }
       }
     case modalTypes.CHANGE_MODAL_CONTENT:
