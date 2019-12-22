@@ -1,38 +1,45 @@
 import React, {Component} from 'react';
 import styles from './styles';
 import {withStyles} from '@material-ui/styles';
-import {Button, TextField, Grid, Box} from '@material-ui/core';
+import {Button, Grid, Box} from '@material-ui/core';
 import {connect} from 'react-redux';
 import {compose, bindActionCreators} from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import * as modalActions from './../../actions/modal';
+import renderTextField from '../../components/FormHelper/TextField';
+import validate from './validate';
 
 class TaskForm extends Component {
   handleSubmitForm = data =>{
     console.log(data);
   }
   render() {
-    const {classes, modalActionCreators, handleSubmit } = this.props;
+    const {classes, modalActionCreators, handleSubmit,invalid,submitting } = this.props;
     const {hideModal} = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
         <Grid container>
           <Grid item xs={12}>
-            <Field name="firstName" component="input" type="text"/>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="standard-helperText"
+            <Field 
+              id="title"
               label="Tiêu đề"
-              className={classes.textField}/>
+              className={classes.textField}
+              margin = "normal"
+              name = "title"
+              component={renderTextField}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="standard-multiline-flexible"
+            <Field 
+              id="description"
               label="Mô tả"
+              className={classes.textField}
               multiline
               rowsMax="4"
-              className={classes.textField}/>
+              margin = "normal"
+              name = "description"
+              component={renderTextField}
+            />
           </Grid>
           <Grid item xs={12}>
             <Box display="flex" flexDirection="row-reverse" mt={1}>              
@@ -42,7 +49,7 @@ class TaskForm extends Component {
                 </Button>
               </Box>
               <Box>
-                <Button variant="contained" color="primary" ml={2} type="submit">
+                <Button disabled={invalid || submitting} variant="contained" color="primary" ml={2} type="submit">
                   Lưu Lại
                 </Button>
               </Box>
@@ -62,7 +69,8 @@ const mapDispatchToProps = dispatch => ({
   modalActionCreators: bindActionCreators(modalActions, dispatch)
 });
 const withReduxForm = reduxForm({
-  form: FORM_NAME
+  form: FORM_NAME,
+  validate
 });
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default compose(withConnect,withReduxForm, withStyles(styles))(TaskForm);
