@@ -25,6 +25,25 @@ export const filteTaskSuccess = data => {
       data
     }}
 }
+
+export const addTask = (title,description) => {
+  return {type: taskContants.ADD_TASK, payload :{
+    title,
+    description
+  }}
+}
+export const addTaskSuccess = (data) => {
+  return {type: taskContants.ADD_TASK_SUCCESS, payload: {
+      data
+    }}
+}
+export const addTaskFailed = (error) => {
+  return {type: taskContants.ADD_TASK_FAILED, payload: {
+      error
+    }}
+}
+
+
 /**
  * B1 : fetchListTaskRequest()
  * B2 : resest state task = > []

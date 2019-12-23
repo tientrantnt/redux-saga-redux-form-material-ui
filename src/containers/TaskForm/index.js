@@ -6,12 +6,16 @@ import {connect} from 'react-redux';
 import {compose, bindActionCreators} from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import * as modalActions from './../../actions/modal';
+import * as taskActions from './../../actions/task';
 import renderTextField from '../../components/FormHelper/TextField';
 import validate from './validate';
 
 class TaskForm extends Component {
   handleSubmitForm = data =>{
-    console.log(data);
+    const {title, description } = data;
+    const { tasklActionCreators } = this.props;
+    const {addTask} = tasklActionCreators;
+    addTask(title, description );
   }
   render() {
     const {classes, modalActionCreators, handleSubmit,invalid,submitting } = this.props;
@@ -66,7 +70,8 @@ const FORM_NAME = 'TASK_MANAGEMENT';
 
 const mapStateToProps = null;
 const mapDispatchToProps = dispatch => ({
-  modalActionCreators: bindActionCreators(modalActions, dispatch)
+  modalActionCreators: bindActionCreators(modalActions, dispatch),
+  tasklActionCreators: bindActionCreators(taskActions, dispatch)
 });
 const withReduxForm = reduxForm({
   form: FORM_NAME,

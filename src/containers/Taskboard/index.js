@@ -36,7 +36,7 @@ class Taskboard extends Component {
       <Grid container spacing={2}>
         {STATUSES.map((status, index) => {
           const taskFiltered = listTask.filter(task => task.status === status.value);
-          return (<TaskList tasks={taskFiltered} status={status} key={status.value}/>)
+          return (<TaskList tasks={taskFiltered} status={status} key={status.value} mb={1}/>)
         })
 }
       </Grid>
