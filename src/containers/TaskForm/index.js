@@ -18,7 +18,7 @@ class TaskForm extends Component {
     addTask(title, description );
   }
   render() {
-    const {classes, modalActionCreators, handleSubmit,invalid,submitting } = this.props;
+    const {classes, modalActionCreators, handleSubmit,invalid,submitting} = this.props;
     const {hideModal} = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -68,7 +68,14 @@ class TaskForm extends Component {
 
 const FORM_NAME = 'TASK_MANAGEMENT';
 
-const mapStateToProps = null;
+const mapStateToProps = state => {
+  return {
+    initialValues : {
+      title : state.task.taskEditing ? state.task.taskEditing.title : null,
+      description : state.task.taskEditing ? state.task.taskEditing.description : null,
+    }
+  }
+};
 const mapDispatchToProps = dispatch => ({
   modalActionCreators: bindActionCreators(modalActions, dispatch),
   tasklActionCreators: bindActionCreators(taskActions, dispatch)

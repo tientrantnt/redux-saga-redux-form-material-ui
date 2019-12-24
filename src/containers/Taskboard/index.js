@@ -36,17 +36,27 @@ class Taskboard extends Component {
       <Grid container spacing={2}>
         {STATUSES.map((status, index) => {
           const taskFiltered = listTask.filter(task => task.status === status.value);
-          return (<TaskList tasks={taskFiltered} status={status} key={status.value} mb={1}/>)
+          return (<TaskList tasks={taskFiltered} status={status} key={status.value} mb={1} onClickEdit = {this.handleEditTask}/>)
         })
 }
       </Grid>
     );
     return xhtml;
   }
-  
-  handleOpenForm = () => {
-    const {modalActionCreators} = this.props;
+  handleEditTask = (task) => {
+    const {taskActionCreators, modalActionCreators} = this.props;
+    const {setTaskEditing} = taskActionCreators;
     const {showModal,changeModalContent,changeModalTitle} = modalActionCreators;
+    setTaskEditing(task);
+    showModal();
+    changeModalTitle('Cập nhật công việc');
+    changeModalContent(<TaskForm />);
+  }
+  handleOpenForm = () => {
+    const {modalActionCreators, taskActionCreators} = this.props;   
+    const {setTaskEditing} = taskActionCreators;
+    const {showModal,changeModalContent,changeModalTitle} = modalActionCreators;
+    setTaskEditing(null);
     showModal();
     changeModalTitle('Thêm mới công việc');
     changeModalContent(<TaskForm />);
@@ -61,7 +71,6 @@ class Taskboard extends Component {
     return xhtml;
   }
   handleFilter = e =>{
-    console.log('e:' , e);
     const { value } = e.target;
     const {taskActionCreators} = this.props;
     const {filterTask} = taskActionCreators;

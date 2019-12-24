@@ -10,10 +10,11 @@ import {
   Fab,
   Icon
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 class TaskItem extends Component {
   render() {
-    const {classes, task, status} = this.props;
+    const {classes, task, status, onClickEdit} = this.props;
     const {title,description} = task;
     return (
       <Card className={classes.card}>
@@ -29,7 +30,7 @@ class TaskItem extends Component {
           <p>{description}</p>
         </CardContent>
         <CardActions className={classes.CardActions}>          
-          <Fab color="primary" aria-label="Edit" className={classes.fab} size="small">
+          <Fab color="primary" aria-label="Edit" className={classes.fab} size="small" onClick = {onClickEdit}>
             <Icon fontSize="small">
               edit_icon
             </Icon>
@@ -44,5 +45,10 @@ class TaskItem extends Component {
     )
   }
 }
-
+TaskItem.proTypes = {
+  classes : PropTypes.object,
+  task : PropTypes.object,
+  status : PropTypes.object,
+  onClickEdit : PropTypes.func
+}
 export default withStyles(styles)(TaskItem);
