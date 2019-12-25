@@ -3,7 +3,7 @@ import {toastError} from '../helpers/toastHelper';
 
 const initialState = {
   listTask: [],
-  taskEditing : null
+  taskEditing: null
 }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -70,7 +70,44 @@ const reducer = (state = initialState, action) => {
         const {task} = action.payload;
         return {
           ...state,
-          taskEditing : task
+          taskEditing: task
+        }
+      }
+    case taskContants.UPDATE_TASK:
+      {
+        return {
+          ...state
+        }
+      }
+
+    case taskContants.UPDATE_TASK_SUCCESS:
+      {
+        const {data} = action.payload;
+        const {listTask} = state;
+        const index = listTask.findIndex(item => item.id === data.id);
+        if (index !== -1) {
+          const newlist = [
+            ...listTask.slice(0, index),
+            data,
+            ...listTask.slice(index + 1)
+          ]
+          return {
+            ...state,
+            listTask: newlist
+          }
+        }
+        return {
+          ...state,
+        }
+      }
+
+    case taskContants.UPDATE_TASK_FAILED:
+      {
+        const {error} = action.payload;
+        toastError(error);
+        return {
+          ...state,
+          listTask: []
         }
       }
     default:
