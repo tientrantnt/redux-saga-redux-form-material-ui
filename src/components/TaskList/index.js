@@ -6,7 +6,7 @@ import TaskItem from './../TaskItem/index';
 
 class TaskList extends Component {
   render() {
-    const {classes, tasks, status, onClickEdit} = this.props;
+    const {classes, tasks, status, onClickEdit, onClickDelete} = this.props;
     return (
       <Grid item md={4} xs={12} key={status.value}>
         <Box mt={2} mb={2}>
@@ -19,7 +19,8 @@ class TaskList extends Component {
               task={task}
               status={status}
               onClickEdit=
-              {()=>onClickEdit(task)}/>)
+              {()=>onClickEdit(task)}
+              onClickDelete={() => onClickDelete(task)}/>)
           })
 }
         </div>
