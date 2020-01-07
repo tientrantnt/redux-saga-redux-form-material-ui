@@ -4,12 +4,11 @@ import {Provider} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import configureStore from '../../redux/configureStore';
-import Taskboard from '../Taskboard';
 import GlobalLoading from './../../components/GlobalLoading';
 import theme from './../../commons/Theme';
 import styles from './styles';
 import ModalCommon from './../../components/ModalCommon';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch} from 'react-router-dom';
 import { ADMIN_ROUTES } from './../../constants/index';
 import AdminLayoutRoute from './../../commons/Layout/AdminLayoutRoute';
 
@@ -20,7 +19,7 @@ class App extends Component {
     let xhtml = null;
     xhtml = ADMIN_ROUTES.map((route)=>{
       return (
-        <AdminLayoutRoute ket={route.path} route={route} />
+        <AdminLayoutRoute ket={route.path} name={route.name} path={route.path} component={route.component} exact={route.exact}/>
       );
     });
     return xhtml;

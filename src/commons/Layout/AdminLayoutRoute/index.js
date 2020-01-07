@@ -6,12 +6,11 @@ import Dashboard from './../../../components/Dashboard';
 
 class AdminLayoutRoute extends Component {
   render() {
-    const {route} = this.props;
     const {
       component: YourComponent,
       name,
       ...remainProps
-    } = route;
+    } = this.props;
     return (
       <Route
         {...remainProps}
