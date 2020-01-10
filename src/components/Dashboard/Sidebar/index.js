@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/styles';
 import styles from './styles';
 import {Drawer, List, ListItem} from '@material-ui/core';
 import {ADMIN_ROUTES} from './../../../constants/index';
+import {NavLink} from 'react-router-dom';
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,15 @@ class Sidebar extends Component {
         {
           ADMIN_ROUTES.map((item) => {
             return(
-              <ListItem key={item.path} button className={classes.menuItem}>{item.name}</ListItem>
+              <NavLink
+                to={item.path}
+                exact={item.exact}
+                className={classes.menuLink}
+                activeClassName={classes.menuLinkActive}
+                key={item.path}
+              >
+                 <ListItem key={item.path} button className={classes.menuItem}>{item.name}</ListItem>
+              </NavLink>             
             );
           })
         }

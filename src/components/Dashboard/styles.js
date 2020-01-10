@@ -1,7 +1,9 @@
 const styles = () => ({
+
   wrapper: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    height:'100vh'
   },
   wrapperContent: {
     width: '100%',

@@ -84,8 +84,9 @@ class Header extends Component {
       </Menu>
     );
   }
+  
   render() {
-    const {classes} = this.props;
+    const {classes, name} = this.props;
     return (
       <div className={classes.grow}>
         <AppBar position="static">
@@ -98,7 +99,7 @@ class Header extends Component {
               <MenuIcon/>
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
-              Material-UI
+              {name}
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
