@@ -5,14 +5,11 @@ import {Drawer, List, ListItem} from '@material-ui/core';
 import {ADMIN_ROUTES} from './../../../constants/index';
 import {NavLink} from 'react-router-dom';
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: true
-    }
-  }
   toggleDrawer = value => {
-    this.setState({open: value});
+    const {onToggleSidebar} = this.props;
+    if(onToggleSidebar){
+      onToggleSidebar(value);
+    }
   }
   renderList = () => {
     const {classes} = this.props;
@@ -39,10 +36,9 @@ class Sidebar extends Component {
     return xhtml;
   }
   render() {
-    const {open} = this.state;
-    const {classes} = this.props;
+    const {classes,showSidebar} = this.props;
     return (
-      <Drawer open={open} onClose={() => this.toggleDrawer(false)} classes={{
+      <Drawer open={showSidebar} onClose={() => this.toggleDrawer(false)} classes={{
         paper: classes.drawerPaper,
       }}
       variant = "persistent">
